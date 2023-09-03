@@ -25,6 +25,7 @@ describe('Books API', () => {
       const response = await httpRequester.get('/books').expect(200);
 
       expect(response.body).toEqual(expect.any(Array));
+      expect(response.body.length).toBeGreaterThan(0);
     });
     it(`with author query should return all books of author`, async () => {
       // First prepare the data by adding some books
