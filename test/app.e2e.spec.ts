@@ -49,9 +49,9 @@ describe('Books API', () => {
 
       // Then get the previously stored book
       const response = await httpRequester
-          .get('/books')
-          .query({ author: 'Voltaire' })
-          .expect(200);
+        .get('/books')
+        .query({ author: 'Voltaire' })
+        .expect(200);
 
       expect(response.body).toEqual([
         {
@@ -73,14 +73,14 @@ describe('Books API', () => {
   describe('POST /books', () => {
     it(`should create a book and return it`, async () => {
       const response = await httpRequester
-          .post('/books')
-          .send({
-            isbn: '978-2081510436',
-            title: 'Candide',
-            author: 'Voltaire',
-            date: '1759',
-          })
-          .expect(201);
+        .post('/books')
+        .send({
+          isbn: '978-2081510436',
+          title: 'Candide',
+          author: 'Voltaire',
+          date: '1759',
+        })
+        .expect(201);
 
       expect(response.body).toEqual({
         isbn: '978-2081510436',
@@ -120,8 +120,8 @@ describe('Books API', () => {
 
       // Then get the previously stored book
       const response = await httpRequester
-          .get('/books/978-2081510436')
-          .expect(200);
+        .get('/books/978-2081510436')
+        .expect(200);
 
       expect(response.body).toEqual({
         isbn: '978-2081510436',
@@ -148,7 +148,12 @@ describe('Books API', () => {
       // Finally check the book was successfully deleted
       const response = await httpRequester.get('/books');
 
-      expect(response.body).toEqual([]);
+      expect(response.body).not.toContainEqual({
+        isbn: '978-2081510436',
+        title: 'Candide',
+        author: 'Voltaire',
+        date: '1759',
+      });
     });
   });
 

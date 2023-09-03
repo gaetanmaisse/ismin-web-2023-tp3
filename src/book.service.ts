@@ -1,9 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Book, compareWithTitle } from './Book';
+import { readFile } from 'fs';
 
 @Injectable()
-export class BookService {
+export class BookService implements OnModuleInit {
   private readonly storage = new Map<string, Book>();
+
+  onModuleInit() {
+    readFile('src/dataset.json', (err, data) => {
+      if (err) {
+        throw err;
+      }
+      const books = JSON.parse(data.toString());
+      books.forEach((book) => this.addBook(book));
+    });
+  }
 
   addBook(book: Book) {
     this.storage.set(book.isbn, book);
