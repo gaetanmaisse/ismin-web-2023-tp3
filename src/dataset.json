@@ -1,0 +1,20 @@
+[
+  {
+    "title": "The Lord of the Rings",
+    "author": "J. R. R. Tolkien",
+    "date": "1955",
+    "isbn": "978-0618640157"
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J. R. R. Tolkien",
+    "date": "1937",
+    "isbn": "978-0618260300"
+  },
+  {
+    "title": "The Fellowship of the Ring",
+    "author": "J. R. R. Tolkien",
+    "date": "1954",
+    "isbn": "978-0618346257"
+  }
+]
