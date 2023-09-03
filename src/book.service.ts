@@ -7,14 +7,9 @@ export class BookService implements OnModuleInit {
   private readonly storage = new Map<string, Book>();
 
   async onModuleInit() {
-    return readFile('src/dataset.json')
-      .then((data) => {
-        const books = JSON.parse(data.toString());
-        books.forEach((book) => this.addBook(book));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const data = await readFile('src/dataset.json');
+    const books: Array<Book> = JSON.parse(data.toString());
+    books.forEach((book) => this.addBook(book));
   }
 
   addBook(book: Book) {
